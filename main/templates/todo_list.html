@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo List</title>
+  </head>
+  <body>
+    <h1>Todo List</h1>
+    <ul>
+      {% for todo_item in todo_items %}
+        <li>
+          <h2>{{ todo_item.title }}</h2>
+          <p>{{ todo_item.description }}</p>
+          {% if todo_item.completed %}
+            <p>Completed</p>
+          {% else %}
+            <p>Incomplete</p>
+          {% endif %}
+          <p>Created: {{ todo_item.created_at }}</p>
+          <p>Updated: {{ todo_item.updated_at }}</p>
+          <a href="{% url 'edit_todo_item' todo_item.id %}">Edit</a>
+          <a href="{% url 'delete_todo_item' todo_item.id %}">Delete</a>
+        </li>
+      {% endfor %}
+    </ul>
+    <a href="{% url 'add_todo_item' %}">Create New Todo Item</a>
+  </body>
+</html>
